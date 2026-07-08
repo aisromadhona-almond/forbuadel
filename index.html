@@ -3,400 +3,410 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terima Kasih Ibu Adel Tercinta</title>
-    <!-- Link Font & Ikon Tambahan -->
-    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
-    
+    <title>A Letter We'll Never Forget - Untuk Bu Adel</title>
+    <!-- Canvas Confetti & Font -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
+
         :root {
-            --bg-color: #fff5f5;
-            --card-bg: #ffffff;
-            --text-main: #4a5568;
-            --primary-pink: #ff85a2;
-            --accent-warm: #ffb3c1;
+            --bg-light: #ffffff;
+            --cream: #fffdf9;
             --text-dark: #2d3748;
+            --text-muted: #718096;
+            --red-alert: #fff5f5;
+            --pink-accent: #ff85a2;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.8;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
             overflow-x: hidden;
         }
 
-        /* --- Efek Scroll Halus --- */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* --- Kelas Efek Animasi Muncul (Fade In) --- */
+        /* --- Efek Transisi Scroll --- */
         .reveal {
-            position: relative;
-            transform: translateY(50px);
             opacity: 0;
-            transition: all 1s ease;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.215, 0.610, 0.355, 1);
+            margin: 100px auto;
+            max-width: 700px;
+            padding: 20px;
+            text-align: center;
         }
 
         .reveal.active {
-            transform: translateY(0);
             opacity: 1;
+            transform: translateY(0);
         }
 
-        /* --- Hero Section dengan Animasi Lembut --- */
-        .hero {
+        /* --- HALAMAN PEMBUKA --- */
+        #cover {
+            position: fixed;
+            top:0; left:0; width:100vw; height:100vh;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
-            border-bottom-left-radius: 50px;
-            border-bottom-right-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            animation: fadeInDown 1.2s ease-out;
+            padding: 20px;
+            transition: opacity 1s ease;
+            /* Bunga bergoyang lembut di latar belakang */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><text y="30" font-size="20">🌼</text></svg>');
+            animation: flowerMove 20s linear infinite;
         }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes flowerMove {
+            from { background-position: 0 0; }
+            to { background-position: 500px 500px; }
         }
 
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            color: #d90429;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
+        #cover h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: #d90429; margin-bottom: 20px; }
+        #cover p { font-style: italic; color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem; }
+        
+        .btn {
+            padding: 15px 35px;
             font-size: 1.2rem;
-            color: #64113f;
-            font-weight: 600;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: -40px auto 60px auto;
-            padding: 0 20px;
-        }
-
-        /* --- Surat Utama --- */
-        .letter-card {
-            background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            margin-bottom: 60px;
-            border: 1px solid #ffe5ec;
-        }
-
-        .teacher-photo {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: block;
-            margin: 0 auto 25px auto;
-            border: 5px solid white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .letter-card h2 {
-            font-family: 'Playfair Display', serif;
-            text-align: center;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-        }
-
-        /* --- TIMELINE KENANGAN --- */
-        .timeline-section {
-            margin: 60px 0;
-        }
-
-        .timeline-section h2 {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            margin-bottom: 40px;
-            color: var(--text-dark);
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 100%;
-            margin: 0 auto;
-        }
-
-        /* Garis Tengah Timeline */
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 4px;
-            background-color: var(--primary-pink);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -2px;
-        }
-
-        .timeline-container {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
-        }
-
-        /* Bulatan di Garis */
-        .timeline-container::after {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            right: -8px;
-            background-color: white;
-            border: 4px solid #d90429;
-            top: 25px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .left { left: 0; }
-        .right { left: 50%; }
-
-        .right::after { left: -8px; }
-
-        .timeline-content {
-            padding: 20px 30px;
-            background-color: white;
-            position: relative;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        .timeline-content h3 {
-            font-family: 'Playfair Display', serif;
-            color: #d90429;
-            margin-bottom: 5px;
-        }
-
-        /* --- GALERI FOTO ESTETIK --- */
-        .gallery-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin: 60px 0 30px 0;
-            color: var(--text-dark);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-bottom: 60px;
-        }
-
-        .gallery-item {
-            background-color: white;
-            padding: 15px;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.03);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 230px;
-            object-fit: cover;
-            border-radius: 12px;
-        }
-
-        .gallery-item p {
-            text-align: center;
-            font-size: 0.95rem;
-            margin-top: 12px;
-            font-weight: 600;
-        }
-
-        /* --- PESAN STICKY NOTES (MUNCUL SATU PER SATU) --- */
-        .wishes-title {
-            text-align: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 35px;
-            color: var(--text-dark);
-        }
-
-        .wishes-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-        }
-
-        .note {
-            background-color: #fff9db;
-            padding: 25px;
-            border-radius: 0 0 25px 0;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.5s ease;
-        }
-
-        .note:nth-child(even) { background-color: #e3fafc; }
-        .note:nth-child(3n) { background-color: #f3f0ff; }
-
-        .note p {
-            font-family: 'Caveat', cursive;
-            font-size: 1.5rem;
-            line-height: 1.4;
-            color: #333;
-        }
-
-        .note .from {
-            text-align: right;
-            font-size: 1.1rem;
+            background-color: #ff85a2;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
             font-weight: bold;
-            margin-top: 15px;
-            color: #495057;
+            box-shadow: 0 4px 15px rgba(255,133,162,0.4);
+            transition: transform 0.2s;
         }
+        .btn:hover { transform: scale(1.05); }
 
-        /* --- Footer --- */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: #ffc2d1;
-            margin-top: 80px;
-            border-top-left-radius: 30px;
-            border-top-right-radius: 30px;
-        }
+        /* --- ISI SURAT (DIPROTEKSI SEBELUM KLIK) --- */
+        #main-content { display: none; padding-bottom: 100px; }
 
-        /* Responsif Layar HP/Tablet */
-        @media screen and (max-width: 768px) {
-            .timeline::after { left: 31px; }
-            .timeline-container { width: 100%; padding-left: 70px; padding-right: 25px; }
-            .timeline-container::after { left: 23px; }
-            .left, .right { left: 0; }
-            .hero h1 { font-size: 2.3rem; }
+        /* --- SECTION 1: LOADING --- */
+        .loading-box {
+            background: #f7fafc;
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px dashed var(--pink-accent);
+            text-align: left;
+            font-family: monospace;
+            font-size: 1.1rem;
         }
+        .bar { background: #e2e8f0; height: 15px; border-radius: 10px; margin: 10px 0 20px 0; overflow: hidden; }
+        .progress { background: var(--pink-accent); height: 100%; width: 0; transition: width 0.5s; }
+
+        /* --- SECTION 2 & 7: KALIMAT SCROLL --- */
+        .big-text { font-family: 'Playfair Display', serif; font-size: 2.2rem; line-height: 1.4; color: #1a202c; }
+        .funny-quote { font-family: 'Caveat', cursive; font-size: 2.3rem; color: #d90429; margin-top: 15px; }
+
+        /* --- SECTION 3: STATISTIK --- */
+        .stat-box { background: #fffaf0; padding: 30px; border-radius: 20px; border: 1px solid #feebc8; }
+        .stat-num { font-size: 3.5rem; font-weight: bold; color: #dd6b20; font-family: monospace; }
+
+        /* --- SECTION 4: ACHIEVEMENT --- */
+        .achieve-card { background: white; border-radius: 16px; padding: 20px; margin: 15px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.03); text-align: left; display: flex; align-items: center; gap: 15px; border-left: 5px solid #38a169; }
+        .achieve-card span { font-size: 1.5rem; }
+
+        /* --- SECTION 5: CHAT --- */
+        .chat-container { display: flex; flex-direction: column; gap: 15px; text-align: left; background: #eddcd2; padding: 25px; border-radius: 20px; }
+        .msg { max-width: 70%; padding: 12px 18px; border-radius: 15px; font-size: 1.05rem; }
+        .msg.teacher { background: white; align-self: flex-start; border-top-left-radius: 0; }
+        .msg.students { background: #dcf8c6; align-self: flex-end; border-top-right-radius: 0; }
+        .msg.dots { background: transparent; align-self: flex-end; font-style: italic; color: var(--text-muted); }
+
+        /* --- SECTION 6: ERROR --- */
+        .error-screen { background-color: #fff5f5; border: 2px solid #feb2b2; padding: 40px; border-radius: 20px; color: #c53030; }
+        .error-title { font-size: 5rem; font-weight: bold; font-family: monospace; }
+
+        /* --- SECTION 8: TIMELINE --- */
+        .arrow-down { font-size: 2rem; color: var(--pink-accent); margin: 15px 0; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+
+        /* --- SECTION 9: SECRET BUTTON & IMAGES --- */
+        #secret-zone { display: none; margin-top: 30px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 30px; }
+        .gallery-item { background: white; padding: 10px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); position: relative; }
+        .gallery-item img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; cursor: pointer; }
+        
+        /* Tooltip Masterpiece */
+        .img-container { position: relative; display: inline-block; }
+        .tooltip { visibility: hidden; width: 220px; background-color: #333; color: #fff; text-align: center; border-radius: 6px; padding: 8px; position: absolute; z-index: 99; bottom: 125%; left: 50%; margin-left: -110px; opacity: 0; transition: opacity 0.3s; font-size: 0.9rem; }
+        .img-container:hover .tooltip { visibility: visible; opacity: 1; }
+
+        /* --- SECTION 10: SURAT UTAMA --- */
+        .final-letter { background-color: var(--cream); padding: 50px 40px; border-radius: 4px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); border-top: 4px solid #dd6b20; text-align: justify; font-family: 'Playfair Display', serif; font-size: 1.2rem; line-height: 2; }
+
+        /* --- SECTION 11 & EASTER EGG --- */
+        .sunset-bg { background: linear-gradient(180deg, #fff5f5 0%, #ffe3e3 100%); padding: 60px 20px; border-radius: 30px; }
+        #idle-alert { position: fixed; bottom: 30px; right: 30px; background: rgba(255,255,255,0.95); border: 2px solid var(--pink-accent); padding: 20px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 280px; display: none; z-index: 10000; animation: fadeInUp 0.5s; font-family: 'Caveat', cursive; font-size: 1.5rem; text-align: center; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <!-- Header / Pembuka -->
-    <section class="hero">
-        <h1>Terima Kasih, Ibu Adel!</h1>
-        <p>Untaian kisah dan kenangan manis yang takkan terlupakan</p>
-    </section>
+    <!-- BACKING TRACK (Ganti URL ini jika punya link lagu instrumen pilihanmu) -->
+    <audio id="bgm" loop src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
 
-    <div class="container">
-        
-        <!-- Surat Utama (Langsung Muncul) -->
-        <div class="letter-card">
-            <img src="WhatsApp Image 2026-07-04 at 17.31.32.jpeg" alt="Foto Ibu Adel" class="teacher-photo">
-            <h2>Pesan Spesial dari Kami</h2>
-            <p>Hari ini mungkin menjadi lembar baru di mana kita harus berpisah kelas. Namun, setiap kesabaran, tawa, dan ilmu berharga yang Ibu Adel bagikan selalu tersimpan rapat di hati kami. Terima kasih telah membimbing kami tidak hanya untuk menjadi pintar, tetapi juga untuk menjadi manusia yang lebih baik.</p>
-        </div>
+    <!-- POPUP EASTER EGG (JIKA DIAM 10 DETIK) -->
+    <div id="idle-alert">
+        Masih dibaca?<br>Tenang Bu...<br><strong>Ulangan susulan nggak ada kok. 😆</strong>
+    </div>
 
-        <!-- TIMELINE KENANGAN (Muncul Saat Di-scroll) -->
-        <div class="timeline-section reveal">
-            <h2>⏳ Garis Waktu Kenangan</h2>
-            <div class="timeline">
-                
-                <div class="timeline-container left reveal">
-                    <div class="timeline-content">
-                        <h3>Pertemuan Pertama</h3>
-                        <p>Awal masuk kelas yang penuh malu-malu, tapi Ibu menyambut kami dengan senyuman paling ramah.</p>
-                    </div>
-                </div>
+    <!-- HALAMAN PEMBUKA (COVER) -->
+    <div id="cover">
+        <h1>Untuk Bu Adel.</h1>
+        <p>"Website ini dibuat dengan cinta, sedikit begadang, dan beberapa kali error." 😭</p>
+        <button class="btn" onclick="startLetter()">📩 Buka Surat</button>
+    </div>
 
-                <div class="timeline-container right reveal">
-                    <div class="timeline-content">
-                        <h3>Masa-Masa Ujian</h3>
-                        <p>Saat kami panik, Ibu dengan tenang memberi semangat dan berkata: "Kalian pasti bisa melewati ini!"</p>
-                    </div>
-                </div>
+    <!-- KONTEN UTAMA JALAN CERITA -->
+    <div id="main-content">
 
-                <div class="timeline-container left reveal">
-                    <div class="timeline-content">
-                        <h3>Hari Perpisahan</h3>
-                        <p>Hari ini kita berpisah kelas, tapi kenangan manis ini akan tetap abadi di dalam website ini.</p>
-                    </div>
-                </div>
-
+        <!-- Section 1: Loading -->
+        <div class="reveal">
+            <div class="loading-box">
+                <div>Mengumpulkan kenangan...</div>
+                <div class="bar"><div class="progress" id="p1"></div></div>
+                <div id="l2" style="display:none;">Mencari kesabaran Bu Adel...</div>
+                <div class="bar" id="b2" style="display:none;"><div class="progress" id="p2"></div></div>
+                <div id="l3" style="display:none; color: #38a169; font-weight: bold;">✔ Kesabaran ditemukan. Jumlah: Tak Terbatas.</div>
             </div>
         </div>
 
-        <!-- GALERI FOTO (Muncul Saat Di-scroll) -->
-        <h2 class="gallery-title reveal">📸 Album Kenangan Kita</h2>
-        <div class="gallery-grid reveal">
-            
-            <div class="gallery-item">
-                <img src="musmadin.jpeg" alt="Kenangan 1">
-                <p>Momen Hangat Bersama</p>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="WhatsApp Image 2026-07-04 at 17.31.32.jpeg" alt="Kenangan 2">
-                <p>Senyum Indah Ibu Adel</p>
-            </div>
-
+        <!-- Section 2: Kalimat Beruntun -->
+        <div class="reveal">
+            <p class="big-text">"Katanya guru mengajar mata pelajaran."</p>
+        </div>
+        <div class="reveal">
+            <p class="big-text">"Tapi Bu Adel ngajarin kami banyak hal yang nggak ada di buku."</p>
+        </div>
+        <div class="reveal">
+            <p class="big-text">"Termasuk cara tetap sabar menghadapi murid yang jawabannya..."</p>
+            <p class="funny-quote">'Bu, saya lupa bawa otak hari ini.' 😂</p>
         </div>
 
-        <!-- PESAN KESAN (Muncul Bergantian Saat Di-scroll) -->
-        <h2 class="wishes-title reveal">✍️ Surat-Surat Kecil</h2>
-        <div class="wishes-grid">
+        <!-- Section 3: Statistik -->
+        <div class="reveal">
+            <div class="stat-box">
+                <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 20px;">📊 Data Penelitian Selama Bersama Bu Adel</h2>
+                <div style="margin-bottom: 20px;">
+                    <p>Kesabaran Bu Adel</p>
+                    <div class="stat-num">999999%</div>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <p>Jumlah kata "Bu izin ke toilet."</p>
+                    <div class="stat-num">≈ ∞</div>
+                </div>
+                <div>
+                    <p>Jumlah murid bilang "Bu bentar lagi selesai." (Padahal belum mulai)</p>
+                    <div class="stat-num">100%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Achievement -->
+        <div class="reveal">
+            <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 20px;">🏆 Achievement Unlocked</h2>
+            <div class="achieve-card"><span>✔</span> Berhasil menghafal nama semua murid</div>
+            <div class="achieve-card"><span>✔</span> Berhasil menghadapi kelas paling berisik</div>
+            <div class="achieve-card"><span>✔</span> Berhasil pura-pura tidak kesal waktu kami ribut</div>
+            <div class="achieve-card"><span>✔</span> Berhasil membuat kami kangen</div>
+        </div>
+
+        <!-- Section 5: Simulasi Chat -->
+        <div class="reveal">
+            <div class="chat-container">
+                <div class="msg teacher"><strong>Bu Adel:</strong> Anak-anak, tugasnya dikumpulkan ya.</div>
+                <div class="msg students"><strong>Kami:</strong> Siap Bu.</div>
+                <div class="msg dots">.... 3 hari kemudian ....</div>
+                <div class="msg students"><strong>Kami:</strong> Bu boleh besok? 🙂</div>
+            </div>
+        </div>
+
+        <!-- Section 6: Screen Error Fake -->
+        <div class="reveal">
+            <div class="error-screen">
+                <div class="error-title">404</div>
+                <p style="font-weight: bold; font-size: 1.2rem; margin-bottom: 10px;">Guru Pengganti Not Found.</p>
+                <p>Kami mencoba mencari Bu Adel... Loading... Loading...</p>
+                <p style="margin-top: 15px; font-style: italic;">Tidak ditemukan yang seperti Bu Adel.</p>
+            </div>
+        </div>
+
+        <!-- Section 7: Sesi Haru -->
+        <div class="reveal">
+            <p class="big-text">"Kami sadar."</p>
+        </div>
+        <div class="reveal">
+            <p class="big-text">"Tidak semua guru akan kami ingat."</p>
+        </div>
+        <div class="reveal">
+            <p class="big-text">"Tapi ada beberapa..."</p>
+        </div>
+        <div class="reveal">
+            <p class="big-text">"...yang tetap tinggal di hati."</p>
+        </div>
+        <div class="reveal">
+            <p class="big-text" style="color: #d90429; font-weight: bold;">"Bu Adel salah satunya." 🌼</p>
+        </div>
+
+        <!-- Section 8: Timeline Perjalanan -->
+        <div class="reveal">
+            <h2 style="font-family: 'Playfair Display', serif; margin-bottom: 30px;">⏳ Garis Waktu Kita</h2>
+            <div style="font-size: 1.2rem; font-weight: 600;">
+                <div>Hari Pertama</div>
+                <div class="arrow-down">↓</div>
+                <div>Mulai mengenal Bu Adel</div>
+                <div class="arrow-down">↓</div>
+                <div>Mulai sering ditegur</div>
+                <div class="arrow-down">↓</div>
+                <div>Mulai paham pelajaran</div>
+                <div class="arrow-down">↓</div>
+                <div>Mulai nyaman</div>
+                <div class="arrow-down">↓</div>
+                <div style="color: #d90429;">Tidak terasa... Sampai di hari perpisahan.</div>
+            </div>
+        </div>
+
+        <!-- Section 9: Secret Button & Gallery -->
+        <div class="reveal">
+            <p style="margin-bottom: 15px; font-weight: bold;">Ada tombol kecil banget di bawah ini 👇</p>
+            <button class="btn" id="hint-btn" style="padding: 5px 15px; font-size: 0.9rem; background: #718096;" onclick="openSecret()">Jangan diklik.</button>
             
-            <div class="note reveal">
-                <p>"Terima kasih Ibu Adel tercinta, sudah sabar banget dengerin keributan kami di kelas sehari-hari. Sehat selalu ya, Bu!"</p>
-                <div class="from">- Si paling diam</div>
+            <div id="secret-zone">
+                <p class="funny-quote">"Nah kan diklik juga. 😂😂 Yaudah sekalian..."</p>
+                <div class="gallery-grid">
+                    <!-- Foto Utama dengan Tooltip Easter Egg -->
+                    <div class="gallery-item">
+                        <div class="img-container">
+                            <img src="WhatsApp Image 2026-07-04 at 17.31.32.jpeg" onclick="alertPhoto()">
+                            <span class="tooltip">Guru langka. Level: Legendary. 🌟</span>
+                        </div>
+                        <p>Ibu Adel Tercinta</p>
+                    </div>
+                    <!-- Foto-foto Screenshot Lain -->
+                    <div class="gallery-item"><img src="Screenshot (1027).png" onclick="alertPhoto()"><p>Kenangan Manis 1</p></div>
+                    <div class="gallery-item"><img src="Screenshot (1028).png" onclick="alertPhoto()"><p>Kenangan Manis 2</p></div>
+                    <div class="gallery-item"><img src="Screenshot (1029).png" onclick="alertPhoto()"><p>Kenangan Manis 3</p></div>
+                    <div class="gallery-item"><img src="Screenshot (1030).png" onclick="alertPhoto()"><p>Kenangan Manis 4</p></div>
+                </div>
             </div>
+        </div>
 
-            <div class="note reveal">
-                <p>"Jangan lupakan kami ya Bu! Kalau nanti berpapasan di jalan, jangan bosan menyapa kami yang jail ini."</p>
-                <div class="from">- Si Paling Ribut</div>
+        <!-- Section 10: Surat Lembaran Akhir -->
+        <div class="reveal">
+            <div class="final-letter">
+                <p>Terima kasih telah menjadi guru yang membuat kami percaya bahwa belajar bisa terasa hangat. Terima kasih karena sudah sabar, bahkan ketika kami lebih ribut daripada materi pelajaran.</p>
+                <br>
+                <p>Kami mungkin lupa beberapa materi. Tapi kami tidak akan lupa orang yang pernah berdiri di depan kelas dengan tulus mengajari kami.</p>
             </div>
+        </div>
 
-            <div class="note reveal">
-                <p>"Ibu Adel adalah tipe guru impian. Cara mengajarnya seru dan tidak bikin ngantuk. Sukses selalu di mana pun Ibu berada!"</p>
-                <div class="from">- Siswa Pojok Belakang</div>
+        <!-- Section 11: Akhir Jalan / Sunset -->
+        <div class="reveal sunset-bg">
+            <p class="big-text" style="font-size: 1.8rem; margin-bottom: 30px;">Setiap pertemuan memang memiliki akhir.</p>
+            <p class="big-text" style="font-size: 1.8rem; margin-bottom: 30px;">Namun rasa terima kasih tidak memiliki batas waktu.</p>
+            <h1 style="font-family: 'Playfair Display', serif; color: #64113f; margin-top: 20px;">Sampai jumpa lagi, Bu Adel. ❤️</h1>
+            
+            <!-- Kata Penutup Akhir Banget -->
+            <div style="margin-top: 60px; font-size: 1rem; line-height: 1.6; color: var(--text-muted); text-align: justify;">
+                Terima kasih telah menjadi bagian terindah dari cerita kami. Dari murid-murid yang mungkin sering membuat Bu Adel menghela napas... tapi diam-diam selalu bangga pernah diajar oleh Bu Adel. 🤍
             </div>
-
         </div>
 
     </div>
 
-    <footer>
-        <p>Dibuat khusus dengan penuh rasa sayang © 2026 untuk Ibu Adel</p>
-    </footer>
-
-    <!-- JAVASCRIPT UNTUK EFEK ANIMASI SCROLL -->
+    <!-- JAVASCRIPT LOGIC INTERAKTIF -->
     <script>
+        let idleTimer;
+
+        // 1. Memulai Surat, memutar Lagu, dan Trigger Simulasi Loading
+        function startLetter() {
+            document.getElementById('cover').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('cover').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                document.getElementById('bgm').play();
+                runLoaders();
+                resetIdleTimer();
+            }, 1000);
+        }
+
+        // 2. Simulasi Loading Bar Otomatis
+        function runLoaders() {
+            let p1 = document.getElementById('p1');
+            let width1 = 0;
+            let id1 = setInterval(() => {
+                if (width1 >= 72) {
+                    clearInterval(id1);
+                    document.getElementById('l2').style.display = 'block';
+                    document.getElementById('b2').style.display = 'block';
+                    runLoader2();
+                } else { width1++; p1.style.width = width1 + '%'; }
+            }, 20);
+        }
+
+        function runLoader2() {
+            let p2 = document.getElementById('p2');
+            let width2 = 0;
+            let id2 = setInterval(() => {
+                if (width2 >= 100) {
+                    clearInterval(id2);
+                    document.getElementById('l3').style.display = 'block';
+                    reveal(); // Refresh view scroll
+                } else { width2++; p2.style.width = width2 + '%'; }
+            }, 15);
+        }
+
+        // 3. Trigger Animasi Muncul saat Scroll
         function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100; // Jarak sensitivitas memicu animasi (pixel)
-
-                if (elementTop < windowHeight - elementVisible) {
+            let reveals = document.querySelectorAll(".reveal");
+            for (let i = 0; i < reveals.length; i++) {
+                let windowHeight = window.innerHeight;
+                let elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 80) {
                     reveals[i].classList.add("active");
                 }
             }
+            
+            // Cek jika user sudah scroll mentok ke paling bawah, nyalakan Petasan Confetti!
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) {
+                confetti({ particleCount: 150, spread: 80, origin: { y: 0.6 } });
+            }
         }
 
-        // Jalankan fungsi setiap kali layar di-scroll
-        window.addEventListener("scroll", reveal);
-        
-        // Jalankan sekali saat pertama kali halaman dibuka
-        window.addEventListener("load", reveal);
-    </script>
+        window.addEventListener("scroll", () => { reveal(); resetIdleTimer(); });
 
+        // 4. Secret Button Area
+        function openSecret() {
+            document.getElementById('secret-zone').style.display = 'block';
+            document.getElementById('hint-btn').style.display = 'none';
+            setTimeout(reveal, 100);
+        }
+
+        // 5. Easter Egg Klik Foto
+        function alertPhoto() {
+            alert("Foto ini mengandung 98% kenangan, 2% murid yang matanya merem. 😆");
+        }
+
+        // 6. Easter Egg Deteksi Diam 10 Detik
+        function resetIdleTimer() {
+            clearTimeout(idleTimer);
+            document.getElementById('idle-alert').style.display = 'none';
+            idleTimer = setTimeout(() => {
+                // Jangan muncul kalau cover masih ada
+                if(document.getElementById('cover').style.display === 'none') {
+                    document.getElementById('idle-alert').style.display = 'block';
+                }
+            }, 10000);
+        }
+        
+        document.onmousemove = resetIdleTimer;
+        document.onkeypress = resetIdleTimer;
+    </script>
 </body>
 </html>
