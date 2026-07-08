@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terima Kasih Bu Adel</title>
+    <title>Terima Kasih Ibu Adel Tercinta</title>
+    <!-- Link Font & Ikon Tambahan -->
+    @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
+    
     <style>
-        /* --- Google Fonts --- */
-        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
-
         :root {
             --bg-color: #fff5f5;
             --card-bg: #ffffff;
@@ -28,21 +28,46 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.8;
+            overflow-x: hidden;
         }
 
-        /* --- Hero Section --- */
+        /* --- Efek Scroll Halus --- */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* --- Kelas Efek Animasi Muncul (Fade In) --- */
+        .reveal {
+            position: relative;
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* --- Hero Section dengan Animasi Lembut --- */
         .hero {
             text-align: center;
-            padding: 80px 20px;
+            padding: 100px 20px;
             background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
             border-bottom-left-radius: 50px;
             border-bottom-right-radius: 50px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            animation: fadeInDown 1.2s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: #d90429;
             margin-bottom: 10px;
         }
@@ -53,20 +78,19 @@
             font-weight: 600;
         }
 
-        /* --- Container Utama --- */
         .container {
             max-width: 900px;
             margin: -40px auto 60px auto;
             padding: 0 20px;
         }
 
-        /* --- Surat / Pesan Utama --- */
+        /* --- Surat Utama --- */
         .letter-card {
             background-color: var(--card-bg);
             padding: 40px;
             border-radius: 24px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             border: 1px solid #ffe5ec;
         }
 
@@ -88,103 +112,148 @@
             margin-bottom: 20px;
         }
 
-        .letter-card p {
-            font-size: 1.1rem;
-            text-align: justify;
-            margin-bottom: 20px;
-            text-indent: 30px;
+        /* --- TIMELINE KENANGAN --- */
+        .timeline-section {
+            margin: 60px 0;
         }
 
-        /* --- Quote Section --- */
-        .quote-box {
-            background-color: #fff0f3;
-            border-left: 5px solid var(--primary-pink);
-            padding: 20px;
-            border-radius: 0 16px 16px 0;
-            margin: 30px 0;
-            font-style: italic;
+        .timeline-section h2 {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            color: var(--text-dark);
         }
 
-        /* --- Galeri Foto --- */
+        .timeline {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Garis Tengah Timeline */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--primary-pink);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        /* Bulatan di Garis */
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            right: -8px;
+            background-color: white;
+            border: 4px solid #d90429;
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left { left: 0; }
+        .right { left: 50%; }
+
+        .right::after { left: -8px; }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .timeline-content h3 {
+            font-family: 'Playfair Display', serif;
+            color: #d90429;
+            margin-bottom: 5px;
+        }
+
+        /* --- GALERI FOTO ESTETIK --- */
         .gallery-title {
             text-align: center;
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
-            margin: 50px 0 25px 0;
+            margin: 60px 0 30px 0;
             color: var(--text-dark);
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
         }
 
         .gallery-item {
             background-color: white;
-            padding: 12px;
+            padding: 15px;
             border-radius: 16px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .gallery-item:hover {
-            transform: translateY(-5px);
+            transform: scale(1.03);
         }
 
         .gallery-item img {
             width: 100%;
-            height: 200px;
+            height: 230px;
             object-fit: cover;
             border-radius: 12px;
         }
 
         .gallery-item p {
             text-align: center;
-            font-size: 0.9rem;
-            margin-top: 10px;
+            font-size: 0.95rem;
+            margin-top: 12px;
             font-weight: 600;
-            color: var(--text-main);
         }
 
-        /* --- Pesan dari Siswa (Sticky Notes) --- */
+        /* --- PESAN STICKY NOTES (MUNCUL SATU PER SATU) --- */
         .wishes-title {
             text-align: center;
             font-family: 'Playfair Display', serif;
             font-size: 2rem;
-            margin-bottom: 25px;
+            margin-bottom: 35px;
             color: var(--text-dark);
         }
 
         .wishes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
         }
 
         .note {
-            background-color: #fff9db; /* Warna kuning sticky note */
-            padding: 20px;
-            border-radius: 0 0 20px 0;
+            background-color: #fff9db;
+            padding: 25px;
+            border-radius: 0 0 25px 0;
             box-shadow: 5px 5px 15px rgba(0,0,0,0.05);
-            position: relative;
-            transform: rotate(-1deg);
+            transition: all 0.5s ease;
         }
 
-        .note:nth-child(even) {
-            background-color: #e3fafc; /* Variasi warna biru muda */
-            transform: rotate(1.5deg);
-        }
-
-        .note:nth-child(3n) {
-            background-color: #f3f0ff; /* Variasi warna ungu muda */
-            transform: rotate(-1.5deg);
-        }
+        .note:nth-child(even) { background-color: #e3fafc; }
+        .note:nth-child(3n) { background-color: #f3f0ff; }
 
         .note p {
             font-family: 'Caveat', cursive;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             line-height: 1.4;
             color: #333;
         }
@@ -207,103 +276,127 @@
             border-top-right-radius: 30px;
         }
 
-        footer p {
-            font-weight: 600;
-            color: #64113f;
-        }
-
-        /* --- Responsif HP --- */
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 2rem; }
-            .letter-card { padding: 20px; }
-            .hero { padding: 50px 20px; }
+        /* Responsif Layar HP/Tablet */
+        @media screen and (max-width: 768px) {
+            .timeline::after { left: 31px; }
+            .timeline-container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-container::after { left: 23px; }
+            .left, .right { left: 0; }
+            .hero h1 { font-size: 2.3rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Bagian Atas / Pembuka -->
+    <!-- Header / Pembuka -->
     <section class="hero">
-        <h1>Terima Kasih, yaaa!</h1>
-        <p>Sebuah Persembahan Sederhana dari Kami Kelas 4A ula</p>
+        <h1>Terima Kasih, Ibu Adel!</h1>
+        <p>Untaian kisah dan kenangan manis yang takkan terlupakan</p>
     </section>
 
-    <!-- Konten Utama -->
     <div class="container">
         
-        <!-- Surat untuk bu adel -->
+        <!-- Surat Utama (Langsung Muncul) -->
         <div class="letter-card">
-            <!-- GANTI "foto-ibu-guru.jpg" dengan link/nama file foto gurumu -->
-            <img src="foto-ibu-guru.jpg" alt="Foto Ibu Guru" class="teacher-photo">
-            
-            <h2>Untaian Kata untuk Ibu [Nama Guru]</h2>
-            
-            <p>Hari ini mungkin menjadi momen perpisahan kelas kita, namun segala ilmu, kesabaran, dan senyuman hangat yang selalu Ibu berikan setiap pagi di kelas tidak akan pernah berpisah dari ingatan kami. Terima kasih telah menjadi lebih dari sekadar guru; Ibu telah menjadi sosok yang membimbing langkah kami dengan penuh kasih sayang.</p>
-            
-            <div class="quote-box">
-                "Seorang guru yang baik adalah seperti lilin—ia menghabiskan dirinya sendiri untuk menerangi jalan bagi orang lain."
-            </div>
-
-            <p>Kami memohon maaf jika selama ini sering membuat Ibu lelah atau jengkel dengan tingkah laku kami yang kurang berkenan. Website kecil ini adalah bukti bahwa setiap detik kebersamaan kita di kelas sangatlah berharga bagi kami semua. Sehat selalu dan sukses di tempat yang baru ya, Bu!</p>
+            <img src="WhatsApp Image 2026-07-04 at 17.31.32.jpeg" alt="Foto Ibu Adel" class="teacher-photo">
+            <h2>Pesan Spesial dari Kami</h2>
+            <p>Hari ini mungkin menjadi lembar baru di mana kita harus berpisah kelas. Namun, setiap kesabaran, tawa, dan ilmu berharga yang Ibu Adel bagikan selalu tersimpan rapat di hati kami. Terima kasih telah membimbing kami tidak hanya untuk menjadi pintar, tetapi juga untuk menjadi manusia yang lebih baik.</p>
         </div>
 
-        <!-- Bagian Galeri Foto -->
-        <h2 class="gallery-title">📸 Album Kenangan Kita</h2>
-        <div class="gallery-grid">
+        <!-- TIMELINE KENANGAN (Muncul Saat Di-scroll) -->
+        <div class="timeline-section reveal">
+            <h2>⏳ Garis Waktu Kenangan</h2>
+            <div class="timeline">
+                
+                <div class="timeline-container left reveal">
+                    <div class="timeline-content">
+                        <h3>Pertemuan Pertama</h3>
+                        <p>Awal masuk kelas yang penuh malu-malu, tapi Ibu menyambut kami dengan senyuman paling ramah.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container right reveal">
+                    <div class="timeline-content">
+                        <h3>Masa-Masa Ujian</h3>
+                        <p>Saat kami panik, Ibu dengan tenang memberi semangat dan berkata: "Kalian pasti bisa melewati ini!"</p>
+                    </div>
+                </div>
+
+                <div class="timeline-container left reveal">
+                    <div class="timeline-content">
+                        <h3>Hari Perpisahan</h3>
+                        <p>Hari ini kita berpisah kelas, tapi kenangan manis ini akan tetap abadi di dalam website ini.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- GALERI FOTO (Muncul Saat Di-scroll) -->
+        <h2 class="gallery-title reveal">📸 Album Kenangan Kita</h2>
+        <div class="gallery-grid reveal">
             
-            <!-- Foto 1 -->
             <div class="gallery-item">
-                <img src="foto1.jpg" alt="Kenangan 1">
-                <p>Saat Belajar Serius</p>
+                <img src="musmadin.jpeg" alt="Kenangan 1">
+                <p>Momen Hangat Bersama</p>
             </div>
             
-            <!-- Foto 2 -->
             <div class="gallery-item">
-                <!-- SINI kamu bisa pasang foto selfie barumu hasil AI ganti pose -->
-                <img src="foto-selfie-kamu.jpg" alt="Kenangan 2">
-                <p>Keseruan Selfie Bareng</p>
-            </div>
-            
-            <!-- Foto 3 -->
-            <div class="gallery-item">
-                <img src="foto3.jpg" alt="Kenangan 3">
-                <p>Momen Class Meeting</p>
+                <img src="WhatsApp Image 2026-07-04 at 17.31.32.jpeg" alt="Kenangan 2">
+                <p>Senyum Indah Ibu Adel</p>
             </div>
 
         </div>
 
-        <!-- Bagian Pesan Kesan Tempel (Sticky Notes) -->
-        <h2 class="wishes-title">✍️ Pesan dari Kami</h2>
+        <!-- PESAN KESAN (Muncul Bergantian Saat Di-scroll) -->
+        <h2 class="wishes-title reveal">✍️ Surat-Surat Kecil</h2>
         <div class="wishes-grid">
             
-            <!-- Pesan Siswa 1 -->
-            <div class="note">
-                <p>"Makasih banyak ya Bu udah sabar banget ngajarin aku matematika yang susah ini. Sehat selalu Bu!"</p>
-                <div class="from">- Budi</div>
+            <div class="note reveal">
+                <p>"Terima kasih Ibu Adel tercinta, sudah sabar banget dengerin keributan kami di kelas sehari-hari. Sehat selalu ya, Bu!"</p>
+                <div class="from">- Si paling diam</div>
             </div>
 
-            <!-- Pesan Siswa 2 -->
-            <div class="note">
-                <p>"Ibu guru paling baik dan pengertian sejagat raya! Jangan lupain kelas kita yaa Bu kalau udah pisah."</p>
-                <div class="from">- Siti</div>
+            <div class="note reveal">
+                <p>"Jangan lupakan kami ya Bu! Kalau nanti berpapasan di jalan, jangan bosan menyapa kami yang jail ini."</p>
+                <div class="from">- Si Paling Ribut</div>
             </div>
 
-            <!-- Pesan Siswa 3 -->
-            <div class="note">
-                <p>"Sukses terus di tempat baru Ibu, terima kasih atas petuah dan nasihatnya selama ini."</p>
-                <div class="from">- Andi</div>
+            <div class="note reveal">
+                <p>"Ibu Adel adalah tipe guru impian. Cara mengajarnya seru dan tidak bikin ngantuk. Sukses selalu di mana pun Ibu berada!"</p>
+                <div class="from">- Siswa Pojok Belakang</div>
             </div>
-
-            <!-- Tambahkan pesan teman-temanmu yang lain di bawah ini dengan format yang sama -->
 
         </div>
 
     </div>
 
-    <!-- Bagian Bawah -->
     <footer>
-        <p>Dibuat dengan penuh rasa hormat & cinta © 2026 Kelas [Nama Kelas]</p>
+        <p>Dibuat khusus dengan penuh rasa sayang © 2026 untuk Ibu Adel</p>
     </footer>
+
+    <!-- JAVASCRIPT UNTUK EFEK ANIMASI SCROLL -->
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Jarak sensitivitas memicu animasi (pixel)
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        // Jalankan fungsi setiap kali layar di-scroll
+        window.addEventListener("scroll", reveal);
+        
+        // Jalankan sekali saat pertama kali halaman dibuka
+        window.addEventListener("load", reveal);
+    </script>
 
 </body>
 </html>
